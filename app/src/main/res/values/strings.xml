@@ -1,0 +1,10 @@
+<resources>
+    <string name="app_name">puntouno</string>
+    <string name="Notas">Notas</string>
+    <string name="primero">Ingrese la nota del 60%</string>
+    <string name="segundo">ingrese la nota del 7%</string>
+    <string name="tercero">ingrese la nota del 8%</string>
+    <string name="cuarto">ingrese la nota del 25%</string>
+    <string name="calcular">Calcular Nota curso</string>
+    <string name="resultado">\"la nota final es \"</string>
+</resources>
