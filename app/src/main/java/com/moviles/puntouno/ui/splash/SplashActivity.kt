@@ -1,9 +1,10 @@
-package com.moviles.puntouno
+package com.moviles.puntouno.ui.splash
 
 import android.annotation.SuppressLint
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import com.moviles.puntouno.ui.main.MainActivity
 import com.moviles.puntouno.databinding.ActivitySplashBinding
 import java.util.*
 import kotlin.concurrent.timerTask

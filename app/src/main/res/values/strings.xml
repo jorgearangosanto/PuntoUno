@@ -6,5 +6,5 @@
     <string name="tercero">ingrese la nota del 8%</string>
     <string name="cuarto">ingrese la nota del 25%</string>
     <string name="calcular">Calcular Nota curso</string>
-    <string name="resultado">\"la nota final es \"</string>
+    <string name="resultado">la nota final es : </string>
 </resources>

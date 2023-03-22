@@ -1,36 +1,43 @@
-package com.moviles.puntouno
+package com.moviles.puntouno.ui.main
 
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
+import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
+import com.moviles.puntouno.R
 import com.moviles.puntouno.databinding.ActivityMainBinding
-import java.text.DecimalFormat
 
 
 class MainActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityMainBinding
+    private lateinit var mainViewModel: MainViewModel
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityMainBinding.inflate(layoutInflater)
+        mainViewModel = ViewModelProvider(this)[MainViewModel::class.java]
         val view = binding.root
         setContentView(view)
 
-        val df = DecimalFormat("#.##")
+        val observer = Observer<String> {
+            binding.resultadoTextView.text = buildString {
+                append(getString(R.string.resultado))
+                append(it)
+            }
+        }
+
+        mainViewModel.result.observe(this,observer)
 
         binding.button.setOnClickListener {
             if (!validarCalculate()) {
-                val nota1 = binding.primeraNotaTextInputEditText.text.toString().toDouble()
-                val nota2 = binding.segundaNotaTextInputEdittext.text.toString().toDouble()
-                val nota3 = binding.tercerNotaTextInputEditText.text.toString().toDouble()
-                val nota4 = binding.finalTextInputEdit.text.toString().toDouble()
-                val final = df.format(nota1*0.60 + nota2*0.07 + nota3*0.08 + nota4*0.25)
-                binding.resultadoTextView.text = buildString {
-                    append(getString(R.string.resultado))
-                    append(final)
-                }
+                mainViewModel.calcularNota(
+                    binding.primeraNotaTextInputEditText.text.toString().toDouble(),
+                    binding.segundaNotaTextInputEdittext.text.toString().toDouble(),
+                    binding.tercerNotaTextInputEditText.text.toString().toDouble(),
+                    binding.finalTextInputEdit.text.toString().toDouble())
             } else {
                 binding.resultadoTextView.text = ""
                 Toast.makeText(this, "existen campos vacios", Toast.LENGTH_SHORT).show()
